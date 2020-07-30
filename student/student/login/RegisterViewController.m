@@ -69,9 +69,18 @@
 
 
 - (void)press:(UIButton *)btn {
-    [self.delegate passContent:self.userTextField.text andPass:self.passTextField.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(_passTextField.text.length < 6) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"密码小于6位数，重新输入" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _passTextField.text = @"";
+        }];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
     
+        [self.delegate passContent:self.userTextField.text andPass:self.passTextField.text];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     
 }
 

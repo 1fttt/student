@@ -216,7 +216,7 @@
 
              //判断是否存在该学生
              int i = 0;
-             for(; i < _nameArr.count; i++) {
+         for(; i < self.nameArr.count; i++) {
                  if([nameField.text isEqualToString:_nameArr[i]]) {
                      break;
                  }
