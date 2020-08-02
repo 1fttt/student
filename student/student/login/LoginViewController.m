@@ -50,7 +50,8 @@
     self.passTextField.secureTextEntry = YES;
     self.passTextField.keyboardType = UIKeyboardTypeDefault;
     
-
+    _userTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _passTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     //小标
     UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];

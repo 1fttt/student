@@ -32,8 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSMutableArray *numArr;
 @property NSMutableArray *scoreArr;
 
+@property NSMutableArray *studentArr;
+
 //声明代理属性
 @property id <AddDelegate> addDelegate;
+
+//声明block
+@property void (^myblock) (Student*);
 
 @end
 

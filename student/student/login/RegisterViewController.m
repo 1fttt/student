@@ -37,6 +37,8 @@
     self.passTextField.placeholder = @"请输入密码";
     self.passTextField.secureTextEntry = YES;
     
+    _userTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _passTextField.clearButtonMode = UITextFieldViewModeAlways;
     
     UIImageView *user = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user1.png"]];
     self.userTextField.leftView = user;
@@ -69,7 +71,13 @@
 
 
 - (void)press:(UIButton *)btn {
-    if(_passTextField.text.length < 6) {
+    
+    if(_userTextField.text.length == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"请输入用户名" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else if(_passTextField.text.length < 6) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"警告" message:@"密码小于6位数，重新输入" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             _passTextField.text = @"";

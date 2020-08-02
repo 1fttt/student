@@ -50,6 +50,11 @@
     _scoreTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"成绩.png"]];
     _nameTextField.leftViewMode = UITextFieldViewModeAlways;
     
+    _nameTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _classTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _numTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _scoreTextField.clearButtonMode = UITextFieldViewModeAlways;
+    
     
     [self.view addSubview:_nameTextField];
     [self.view addSubview:_classTextField];

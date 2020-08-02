@@ -10,6 +10,7 @@
 #import "AddViewController.h"
 #import "DeleteViewController.h"
 #import "ModifyViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface StartViewController : UIViewController
@@ -23,11 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIButton *searchButton;
 @property UIButton *quitButton;
 
+
 @property NSMutableArray *nameArr;
 @property NSMutableArray *classArr;
 @property NSMutableArray *numArr;
 @property NSMutableArray *scoreArr;
 
+@property NSMutableArray *stuArr;
 
 
 @end

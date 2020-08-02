@@ -25,6 +25,7 @@
     _deleteTextField.borderStyle = UITextBorderStyleRoundedRect;
      _deleteTextField.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     _deleteTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"学生.png"]];
+    _deleteTextField.clearButtonMode = UITextFieldViewModeAlways;
     _deleteTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_deleteTextField];
     

@@ -8,7 +8,7 @@
 
 #import "AddViewController.h"
 #import "Student.h"
-@interface AddViewController ()
+@interface AddViewController () <UITextFieldDelegate>
 @end
 
 @implementation AddViewController
@@ -49,6 +49,15 @@
     _scoreTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"成绩.png"]];
     _nameTextField.leftViewMode = UITextFieldViewModeAlways;
     
+    _nameTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _classTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _numTextField.clearButtonMode = UITextFieldViewModeAlways;
+    _scoreTextField.clearButtonMode = UITextFieldViewModeAlways;
+    
+    _nameTextField.delegate = self;
+    _classTextField.delegate = self;
+    _numTextField.delegate = self;
+    _scoreTextField.delegate =self;
     
     [self.view addSubview:_nameTextField];
     [self.view addSubview:_classTextField];
@@ -132,7 +141,22 @@
             student.classStr = _classTextField.text;
             student.numStr = _numTextField.text;
             student.scoreStr = _scoreTextField.text;
-            [self.addDelegate content:student];
+            
+//            _studentArr = [[NSMutableArray alloc] init];
+//            [_studentArr addObject:student];
+//            NSLog(@"%@", _studentArr[0]);
+//            Student *stu1 = [[Student alloc] init];
+//            stu1 = _studentArr[0];
+//            //NSLog(@"%@", stu1.nameStr);
+            
+            
+            //协议传值
+            //[self.addDelegate content:student];
+            
+            //block传值
+            //得到要传的属性
+            self.myblock(student);
+            
             [self dismissViewControllerAnimated:YES    completion:nil];
         }
     }

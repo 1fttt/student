@@ -12,6 +12,7 @@
 #import "DeleteViewController.h"
 #import "SearchViewController.h"
 #import "ModifyViewController.h"
+#import "Student.h"
 
 
 @interface StartViewController () 
@@ -25,62 +26,78 @@
     [super viewDidLoad];
     
      self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bz.jpg"]];
-     
-     
-     
    
-     //初始信息
-     self.nameArr = [[NSMutableArray alloc] init];
-     self.classArr = [[NSMutableArray alloc] init];
-     self.numArr = [[NSMutableArray alloc] init];
-     self.scoreArr = [[NSMutableArray alloc] init];
-     [self.nameArr addObject:@"小红"];
-     [self.nameArr addObject:@"小橙"];
-     [self.nameArr addObject:@"小黄"];
-     [self.nameArr addObject:@"小绿"];
-     [self.classArr addObject:@"1班"];
-     [self.classArr addObject:@"1班"];
-     [self.classArr addObject:@"3班"];
-     [self.classArr addObject:@"3班"];
-     [self.numArr addObject:@"1001"];
-     [self.numArr addObject:@"1003"];
-     [self.numArr addObject:@"1006"];
-     [self.numArr addObject:@"1009"];
-     [self.scoreArr addObject:@"100"];
-     [self.scoreArr addObject:@"98"];
-     [self.scoreArr addObject:@"78"];
-     [self.scoreArr addObject:@"98"];
+//
+//    _stuArr = [[NSMutableArray alloc] init];
+//
+//    //初始信息
+//    Student *stu = [[Student alloc] init];
+//
+//
+//    stu.nameStr = @"小红";
+//    stu.classStr = @"一班";
+//    stu.numStr = @"1001";
+//    stu.scoreStr = @"110";
+//
+//    [_stuArr addObject:stu];
+//
+//
+//    NSLog(@"%@", _stuArr[0]);
+//
      
-    
+
+     //初始信息
+     _nameArr = [[NSMutableArray alloc] init];
+     _classArr = [[NSMutableArray alloc] init];
+     _numArr = [[NSMutableArray alloc] init];
+     _scoreArr = [[NSMutableArray alloc] init];
+     [_nameArr addObject:@"小红"];
+     [_nameArr addObject:@"小橙"];
+     [_nameArr addObject:@"小黄"];
+     [_nameArr addObject:@"小绿"];
+     [_classArr addObject:@"1班"];
+     [_classArr addObject:@"1班"];
+     [_classArr addObject:@"3班"];
+     [_classArr addObject:@"3班"];
+     [_numArr addObject:@"1001"];
+     [_numArr addObject:@"1003"];
+     [_numArr addObject:@"1006"];
+     [_numArr addObject:@"1009"];
+     [_scoreArr addObject:@"100"];
+     [_scoreArr addObject:@"98"];
+     [_scoreArr addObject:@"78"];
+     [_scoreArr addObject:@"98"];
+
+
     
     
      //addButton
-     self.addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     self.addButton.frame = CGRectMake(60, 470, 90, 37);
-     self.addButton.layer.cornerRadius = 7;
-     self.addButton.layer.borderColor = [UIColor whiteColor].CGColor;
-     [self.addButton.layer setMasksToBounds:YES];
-     self.addButton.layer.borderWidth = 1.3;
-     self.addButton.titleLabel.font = [UIFont systemFontOfSize:17];
-     self.addButton.tintColor = [UIColor whiteColor];
+     _addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+     _addButton.frame = CGRectMake(60, 470, 90, 37);
+     _addButton.layer.cornerRadius = 7;
+     _addButton.layer.borderColor = [UIColor whiteColor].CGColor;
+     [_addButton.layer setMasksToBounds:YES];
+     _addButton.layer.borderWidth = 1.3;
+     _addButton.titleLabel.font = [UIFont systemFontOfSize:17];
+     _addButton.tintColor = [UIColor whiteColor];
      
      
-     [self.addButton setTitle:@"增加" forState:UIControlStateNormal];
-     [self.addButton addTarget:self action:@selector(pressAdd) forControlEvents:UIControlEventTouchUpInside];
+     [_addButton setTitle:@"增加" forState:UIControlStateNormal];
+     [_addButton addTarget:self action:@selector(pressAdd) forControlEvents:UIControlEventTouchUpInside];
      [self.view addSubview:self.addButton];
      
      //deleteButton
-     self.deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     self.deleteButton.frame = CGRectMake(264, 470, 90, 37);
-     self.deleteButton.layer.cornerRadius = 7;
-     self.deleteButton.layer.borderColor = [UIColor whiteColor].CGColor;
-     [self.deleteButton.layer setMasksToBounds:YES];
-     self.deleteButton.layer.borderWidth = 1.3;
-     self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:17];
-     self.deleteButton.tintColor = [UIColor whiteColor];
+     _deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+     _deleteButton.frame = CGRectMake(264, 470, 90, 37);
+     _deleteButton.layer.cornerRadius = 7;
+     _deleteButton.layer.borderColor = [UIColor whiteColor].CGColor;
+     [_deleteButton.layer setMasksToBounds:YES];
+     _deleteButton.layer.borderWidth = 1.3;
+     _deleteButton.titleLabel.font = [UIFont systemFontOfSize:17];
+     _deleteButton.tintColor = [UIColor whiteColor];
      
-     [self.deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-     [self.deleteButton addTarget:self action:@selector(pressDelete) forControlEvents:UIControlEventTouchUpInside];
+     [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+     [_deleteButton addTarget:self action:@selector(pressDelete) forControlEvents:UIControlEventTouchUpInside];
      [self.view addSubview:self.deleteButton];
      
      //modifyButton
@@ -161,6 +178,16 @@
     addView.classArr = _classArr;
     addView.numArr = _numArr;
     addView.scoreArr = _scoreArr;
+    
+    //回调 将addView界面的值传过来
+    addView.myblock = ^(Student * student) {
+        [self.nameArr addObject:student.nameStr];
+        [self.classArr addObject:student.classStr];
+        [self.numArr addObject:student.numStr];
+        [self.scoreArr addObject:student.scoreStr];
+        [self.tableView reloadData];
+    };
+    
     
     addView.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:addView animated:YES completion:nil];
@@ -341,30 +368,49 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    // NSLog(@"%ld", [self.name count]);
     return [self.nameArr count];
-    return 1;
+    //return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ft" forIndexPath:indexPath];
-    //cell.nameLabel.text = @"小红";
-    //cell.classLabel.text = @"1";
-//    cell.numLabel.text = @"1001";
-//    cell.scoreLabel.text = @"12";
+//
+//    cell.nameLabel.text = [_stuArr[indexPath.row] nameStr];
+//    cell.classLabel.text = [_stuArr[indexPath.row] classStr];
+//    cell.numLabel.text = [_stuArr[indexPath.row] numStr];
+//    cell.scoreLabel.text = [_stuArr[indexPath.row] scoreStr];
+//
+//    
+//
+//    Student *stu1 = [[Student alloc] init];
+//    stu1 = _stuArr[0];
+//    NSLog(@"%@", stu1);
+//    cell.nameLabel.text = stu1.nameStr;
+//    cell.classLabel.text = stu1.classStr;
+//    cell.numLabel.text = stu1.numStr;
+//    cell.scoreLabel.text = stu1.scoreStr;
+//
+    
+    
+    
 
     cell.nameLabel.text = self.nameArr[indexPath.row];
     cell.classLabel.text = self.classArr[indexPath.row];
     cell.numLabel.text = self.numArr[indexPath.row];
     cell.scoreLabel.text = self.scoreArr[indexPath.row];
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
+
+
 
 
 @end
